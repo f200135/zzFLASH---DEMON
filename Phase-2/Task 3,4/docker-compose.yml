@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app1:
+    image: postgres:15
+    ports:
+      - "8081:8081"
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: postgres
+    restart: always
+
+  jitsu:
+    image: jitsucom/jitsu
+    ports:
+      - "8000:8000"
+    environment:
+      REDIS_URL: "redis://redis:6379"  # Updated to use the service name 'redis'
+    depends_on:
+      - app1
+    restart: always
+
+  redis:
+    image: redis:latest
+    restart: always
+
