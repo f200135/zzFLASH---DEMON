@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: your-nextjs-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: anti-bribe-pk_admin-frontend
+  template:
+    metadata:
+      labels:
+        app: anti-bribe-pk_admin-frontend
+    spec:
+      containers:
+        - name: anti-bribe-pk_admin-frontend
+          image: mohsin314/anti-bribe-pk_admin-frontend:latest
+          ports:
+            - containerPort: 3000
+
